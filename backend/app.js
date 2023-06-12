@@ -7,7 +7,7 @@ const mongoose=require("mongoose")
 const route = require ("./router/route")
 const cookieParser = require("cookie-parser")
 
-app.use(cors({ origin: 'https://main--cosmic-khapse-c57675.netlify.app' }))
+app.use(cors({ origin: 'https://cosmic-khapse-c57675.netlify.app' }))
 app.use(express.json())
 // app.use(cookieParser())
 
