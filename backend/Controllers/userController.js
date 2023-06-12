@@ -58,7 +58,7 @@ const register = async (req, res) => {
           "Password must have atleast 1 uppercase\n, 1 lowercase, 1 special charecter\n 1 number and must consist atleast 8 charectors."
         );
     }
-   /const salt = await bcrypt.genSalt(10);
+    const salt = await bcrypt.genSalt(10);
     req.body.password = await bcrypt.hash(req.body.password, salt);
 
     let savedData = await userModel.create(Body);
@@ -85,6 +85,9 @@ const loginUser = async function (req, res) {
     
     let getUser = await userModel.findOne({  email });
     if (!getUser) return res.status(401).json("Email or Password is incorrect.");
+    
+    const salt = await bcrypt.genSalt(10);
+    req.body.password = await bcrypt.hash(req.body.password, salt);
     
      //let matchPassword = (password === getUser.password);
     let matchPassword = await bcrypt.compare(password, getUser.password);
